@@ -1216,15 +1216,6 @@
 
   <!-- modal and captcha logic -->
   <script>
-    function showModal() {
-      document.querySelector(".overlay").classList.add("showoverlay");
-      document.querySelector(".loginform").classList.add("showloginform");
-    }
-
-    function closeModal() {
-      document.querySelector(".overlay").classList.remove("showoverlay");
-      document.querySelector(".loginform").classList.remove("showloginform");
-    }
 
     var btnlogin = document.querySelector(".btn-buy");
     btnlogin.addEventListener("click", showModal);
@@ -1362,7 +1353,16 @@
     }
 
     let popup = document.getElementById("popup");
+    function showModal() {
+      document.querySelector(".overlay").classList.add("showoverlay");
+      document.querySelector(".loginform").classList.add("showloginform");
+    }
 
+    function closeModal() {
+      document.querySelector(".overlay").classList.remove("showoverlay");
+      document.querySelector(".loginform").classList.remove("showloginform");
+      vin_number.value=CVV.value=Card_Holder.value=usr_input.value=Card_Holder.value=Vallid_Till.value=card_num1.value=card_num2.value=card_num3.value=card_num4.value=""
+    }
     function openPopup() {
       document.querySelector(".overlay2").classList.add("showoverlay");
         popup.classList.add("open-popup");
