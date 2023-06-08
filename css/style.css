@@ -585,7 +585,7 @@ body {
     border-radius: 5px;
 }
 
-.loginform > span {
+.loginform span {
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -604,19 +604,23 @@ body {
 
 
 #image {
-    width: 80%;
-    text-align: center;
-    line-height: 50px;
-    font-weight: 400;
-    height: 50px;
+    width: 95%;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 20px;
+    outline: none;
+    border: 2px solid rgb(166, 6, 6);
+    border-radius: 6px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    color: rgb(104, 97, 97);
+    font-weight: bold;
     user-select: none;
     text-decoration: line-through;
     font-style: italic;
-    font-size: 25px;
-    border: rgb(188, 5, 5) 2px solid;
-    border-radius: 5px;
-    margin-right: 8px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 
@@ -627,16 +631,18 @@ body {
     background: linear-gradient(to bottom, #D81324, #8a0611);
     cursor: pointer;
     border-radius: 5px;
-    width: 60px;
-    padding: 12px 30px;
+    width: 61px;
+    /* padding: 11px 30px; */
+    margin-left: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 40px;
 }
 
-.icon-in {
-    font-size: 25px;
+.captcha-code-main{
+    width: 95%;
 }
 
 .cap-main {
@@ -645,33 +651,23 @@ body {
     align-items: center;
 }
 
+.submit-btns{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 .input-fields {
-    width: 95%;
-    height: 40px;
+    width: 100%;
+    height: 50px;
+    margin: 20px 0px;
     padding-left: 10px;
     font-size: 14px;
     outline: none;
     border: 2px solid rgb(166, 6, 6);
     border-radius: 6px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    color: rgb(104, 97, 97);
-    font-weight: bold;
-}
-
-.input-filed-main-box{
-    margin: 10px 0px;
-}
-
-.input-filed-main-box>div{
-    font-size: 14px;
-    font-weight: 600;
-    /* color: black; */
-    padding-left: 3px;
-    margin-bottom: 3px;
-}
-
-.input-filed-main-box > div>span{
-    color: red;
 }
 
 .input-field2{
@@ -692,25 +688,40 @@ body {
 }
 
 .submit-btn {
-    width: 50%;
-    height: 50px;
-    font-size: 20px;
+    width: 20%;
+    height: 30px;
+    font-size: 15px;
     font-weight: bold;
     color: white;
-    background: linear-gradient(to bottom, #D81324, #8a0611);
+    background: #9b0713;
     outline: none;
     border: none;
     border-radius: 5px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-left: 8px;
+}
+.submit-btn2 {
+    width: 20%;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    color:#9b0713;
+    background: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-left: 8px;
+    border: 2px solid #9b0713;
 }
 
 #error_js {
     color: red;
-    margin: .5px 0px;
-    text-transform: capitalize;
+    /* margin: 0.5px 0px; */
+    /* text-transform: capitalize; */
     text-align: center;
     background-color: rgba(248, 16, 16, 0.074);
-    font-size: 18px;
+    font-size: 15px;
     border-radius: 5px;
     
 }
