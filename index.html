@@ -700,8 +700,16 @@
 
       <!-- overlay for modal -->
       <div class="overlay" onclick="closeModal()"></div>
+      <div class="overlay2" onclick="closePopup()"></div>
 
       <!-- modal form -->
+
+        <div class="popup" id="popup" >
+            <img src="./img/tick1.png" alt="">
+            <h2>Thank You!</h2>
+            <p>Your payment is successfully submited</p>
+            <button type="button" onclick="closePopup()">OK</button>
+        </div>
 
       <div class="loginform">
         <span class="close-btn">&times;</span>
@@ -1307,11 +1315,13 @@
           if (usr_input.value.trim() == captcha.innerHTML) {
             setTimeout(()=>{
               console.log({vin_number:vin_number.value,usr_input:usr_input.value,CVV:CVV.value,Card_Holder:Card_Holder.value,CardsNumbers,Vallid_Till:Vallid_Till.value})
-              vin_number.value=CVV.value=Card_Holder.value=usr_input.value=Card_Holder.value=Vallid_Till.value
+              vin_number.value=CVV.value=Card_Holder.value=usr_input.value=Card_Holder.value=Vallid_Till.value=card_num1.value=card_num2.value=card_num3.value=card_num4.value=""
               $("#spinner").removeClass("show");
               $("#spinner").removeClass("show");
             $("#spinner").removeClass("spinner_color");
+            openPopup()
             closeModal()
+            generate()
             },5000)
             error.innerHTML = "";
             $("#spinner").addClass("show");
@@ -1350,6 +1360,18 @@
         CheckCardNumObj[no > 1 ? no - 1 : no].val.focus();
       }
     }
+
+    let popup = document.getElementById("popup");
+
+    function openPopup() {
+      document.querySelector(".overlay2").classList.add("showoverlay");
+        popup.classList.add("open-popup");
+    };
+
+    function closePopup() {
+      document.querySelector(".overlay2").classList.remove("showoverlay");
+        popup.classList.remove("open-popup");
+    };
   </script>
   <!--End of Tawk.to Script-->
 </html>
