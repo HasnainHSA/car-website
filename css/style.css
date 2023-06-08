@@ -577,14 +577,6 @@ body {
 }
 
 
-.loginform button {
-    background-color: black;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-}
-
 .loginform > span {
     cursor: pointer;
     position: absolute;
@@ -641,13 +633,20 @@ body {
     height: 40px;
 }
 
-.icon-in {
-    /* font-size: 25px; */
+.captcha-code-main{
+    width: 95%;
 }
 
 .cap-main {
     display: flex;
     justify-content: space-around;
+    align-items: center;
+}
+
+.submit-btns{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -726,25 +725,40 @@ body {
 }
 
 .submit-btn {
-    width: 50%;
-    height: 50px;
-    font-size: 20px;
+    width: 20%;
+    height: 30px;
+    font-size: 15px;
     font-weight: bold;
     color: white;
-    background: linear-gradient(to bottom, #D81324, #8a0611);
+    background: #9b0713;
     outline: none;
     border: none;
     border-radius: 5px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-left: 8px;
+}
+.submit-btn2 {
+    width: 20%;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    color:#9b0713;
+    background: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-left: 8px;
+    border: 2px solid #9b0713;
 }
 
 #error_js {
     color: red;
-    margin: .5px 0px;
-    text-transform: capitalize;
+    /* margin: 0.5px 0px; */
+    /* text-transform: capitalize; */
     text-align: center;
     background-color: rgba(248, 16, 16, 0.074);
-    font-size: 18px;
+    font-size: 15px;
     border-radius: 5px;
     
 }

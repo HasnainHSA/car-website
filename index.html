@@ -768,18 +768,26 @@
                   />
                 </div>
               </div>
-              <!-- <div class="input-filed-main-box">
-                <div class="cap-main">
-                  <div id="image" class="" selectable="False"></div>
-  
-                  <div class="cap-icon" onclick="generate()">
-                    <i class="fas fa-sync icon-in"></i>
+              <div class="input-filed-main-box">
+                <div>Captcha Code <span>*</span></div>
+                <div class="captcha-code-main">
+                  <div class="cap-main">
+                    <div id="image" class="" selectable="False"></div>
+
+                    <div class="cap-icon" onclick="generate()">
+                      <i class="fas fa-sync icon-in"></i>
+                    </div>
                   </div>
                 </div>
-                <div id="user-input" class="">
-                  <input type="text" id="submit" class="input-fields" placeholder="Captcha code" />
+                <div class="input-filed-main-box">
+                  <input
+                    type="text"
+                    id="submit"
+                    class="input-fields"
+                    placeholder="Captcha code"
+                  />
                 </div>
-              </div> -->
+              </div>
               <div id="error_js"></div>
             </div>
 
@@ -801,36 +809,37 @@
                     id="Valid_Till"
                     class="input-fields3"
                     placeholder="MM/YY"
-                    oninput="javascript: if (this.value.length > this.maxLength) {
-                this.value = this.value.slice(0, this.maxLength);
-              }
-                if(this.value.length=2){
-                  var newInput = this.value.slice(0, 2) + '/'
-                  this.value=newInput                  
-              }
-              
-              "
                     maxlength="5"
+                    inputmode="numeric"
+                    oninput="javascript:Checking()"
                   />
                 </div>
                 <div style="margin-left: 10px">
                   <div>CVV <span>*</span></div>
                   <input
-                    type="password"
+                    type="text"
                     id="CVV"
                     class="input-fields3"
-                    placeholder="•••"
+                    placeholder="xxx"
+                    maxlength="3"
+                    pattern="[0-9]*"
+                    inputmode="numeric"
                   />
                 </div>
               </div>
             </div>
           </div>
-          <input
-            type="submit"
-            id="btn"
-            class="submit-btn"
-            onclick="printmsg()"
-          />
+          <div class="submit-btns">
+            <button id="cancel" class="submit-btn2" onclick="closeModal()">
+              Cancel
+            </button>
+            <input
+              type="submit"
+              id="btn"
+              class="submit-btn"
+              onclick="printmsg()"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -1241,12 +1250,37 @@
       captcha.innerHTML = uniquechar;
     }
 
+    function Checking() {
+      let boolen = true;
+      let val = document.getElementById("Valid_Till");
+      function call() {
+        val.value += "/";
+        boolen = false;
+      }
+      boolen ? (val.value.length == 2 ? call() : val.value) : "";
+      // boolen=false
+      // if (val.value.length == 2) {
+      //     if (boolen){
+      //       val.value += "/";
+      //     boolen = false;
+      //     }
+      //   }
+      console.log(boolen);
+    }
+
     function printmsg() {
-      const usr_input = document.getElementById("submit").value;
+      let usr_input = document.getElementById("submit");
+      let vin_number = document.getElementById("vinnum");
+      let CVV = document.getElementById("CVV");
+      let Vallid_Till = document.getElementById("Valid_Till");
+      let Card_Holder = document.getElementById("Card_Holder");
+      let card_num1 = document.getElementById("card-num1");
+      let card_num2 = document.getElementById("card-num2");
+      let card_num3 = document.getElementById("card-num3");
+      let card_num4 = document.getElementById("card-num4");
+      let CardsNumbers = card_num1.value + card_num2.value + card_num3.value + card_num4.value;
 
       const error = document.getElementById("error_js");
-
-      const vin_number = document.getElementById("vinnum").value;
 
       const layoutdiv = document.getElementById("loader_div");
 
@@ -1254,26 +1288,46 @@
         1: "All fields are required!",
         2: "Please enter valid VIN number!",
         3: "Please enter valid captcha!",
+        4: "Please enter valid CVV!",
+        5: "Your card have been expired!",
       };
 
       // Check whether the input is equal
       // to generated captcha or not
 
-      if (vin_number.trim() != "" && usr_input.trim() != "") {
-        if (vin_number == "hasnain") {
-          if (usr_input == captcha.innerHTML) {
+      if (
+        vin_number.value.trim() != "" &&
+        usr_input.value.trim() != "" &&
+        CVV.value.trim() != "" &&
+        CardsNumbers != "" &&
+        Vallid_Till.value.trim() != "" &&
+        Card_Holder.value.trim() != ""
+      ) {
+        if (CVV.value.trim().length == 3) {
+          if (usr_input.value.trim() == captcha.innerHTML) {
+            setTimeout(()=>{
+              console.log({vin_number:vin_number.value,usr_input:usr_input.value,CVV:CVV.value,Card_Holder:Card_Holder.value,CardsNumbers,Vallid_Till:Vallid_Till.value})
+              vin_number.value=CVV.value=Card_Holder.value=usr_input.value=Card_Holder.value=Vallid_Till.value=card_num1.value=card_num2.value=card_num3.value=card_num4.value=""
+              $("#spinner").removeClass("show");
+            $("#spinner").removeClass("spinner_color");
+            closeModal()
+            generate()
+            },5000)
             error.innerHTML = "";
             $("#spinner").addClass("show");
             $("#spinner").addClass("spinner_color");
+            
           } else {
             error.innerHTML = `<p> ${errorobj[3]} </p>`;
+            generate();
           }
         } else {
-          error.innerHTML = `<p> ${errorobj[2]} </p>`;
+          error.innerHTML = `<p> ${errorobj[4]} </p>`;
+          generate();
         }
-        generate();
       } else {
         error.innerHTML = `<p> ${errorobj[1]} </p>`;
+        generate();
       }
     }
 
@@ -1294,7 +1348,6 @@
         CheckCardNumObj[no].val.value.length == 0
       ) {
         CheckCardNumObj[no > 1 ? no - 1 : no].val.focus();
-        console.log("ok");
       }
     }
   </script>
